@@ -1,0 +1,51 @@
+TODO:
+-Summarize variables
+-Decide on relevant variables
+-Write code for (Download) and extraction
+
+Variables:
+One file for each year from 2019 to 2023 (5 years)
+We have the below data for each 
+
+Date		The calendar date of the provided data
+Hr_End		The hour of the observation, in hour ending and 24-hour convention
+DA_Demand	Day-Ahead Cleared Demand, in MW, is comprised of cleared fixed and price-sensitive demand bids plus the net of cleared virtual activity (decrement bids and increment offers); The ISO NE CA value is the sum of the load zones and the Hub values
+RT_Demand	Real-Time Demand, in MW, is Non-PTF Demand for wholesale market settlement from revenue quality metering, and is defined as the sum of non-dispatchable load assets, station service load assets, and unmetered load assets. Starting on June 1, 2018, this total also includes the grossed up demand response value. 
+DA_LMP		Day-Ahead Locational Marginal Price (LMP) in $/MWh by load zone; 'ISO NE CA' tab contains values for the Trading Hub
+DA_EC		Energy Component of Day-Ahead LMP in $/MWh by load zone; 'ISO NE CA' tab contains values for the Trading Hub
+DA_CC		Congestion Component of Day-Ahead LMP in $/MWh by load zone; 'ISO NE CA' tab contains values for the Trading Hub
+DA_MLC		Marginal Loss Component of Day-Ahead LMP in $/MWh by load zone; 'ISO NE CA' tab contains values for the Trading Hub
+RT_LMP		Real-Time Locational Marginal Price (LMP) in $/MWh by load zone; starting on March 1, 2017, this is the hourly average of the five-minute LMP in the hour; 'ISO NE CA' tab contains values for the Trading Hub
+RT_EC		Energy Component of Real-Time LMP in $/MWh by load zone; 'ISO NE CA' tab contains values for the Trading Hub
+RT_CC		Congestion Component of Real-Time LMP in $/MWh by load zone; 'ISO NE CA' tab contains values for the Trading Hub
+RT_MLC		Marginal Loss Component of Real-Time LMP in $/MWh by load zone; 'ISO NE CA' tab contains values for the Trading Hub
+		
+Note concerning weather data: For each load zone, a representative weather station's data is presented as outlined in the table below, and should not be construed as an observation's applicability to the entire load zone. The data on the 'ISO NE CA' tab is a weighted value, derived from historical electricity sales data, as outlined below.
+Dry_Bulb		The dry-bulb temperature in °F for the weather station corresponding to the load zone or Trading Hub (see below). The summer period is June-September, while the winter period is October-May.
+Dew_Point		The dewpoint temperature in °F for the weather station corresponding to the load zone or Trading Hub (see below). The summer period is June-September, while the winter period is October-May.
+
+Graph-level features:
+System_Load		(ISO NE CA tab only) is the actual New England system load in MW as determined by metering, and is used for planning and reporting purposes, not for settlement; System Load is the sum of metered generation and metered net interchange plus demand from pumped storage units. Starting on June 1, 2018, this total also includes the grossed up demand response value. Beginning on April 1, 2019, this value excludes demand from energy storage devices.
+Reg_Service_Price		(ISO NE CA tab only) is the Regulation Market Service clearing price in $/MWh
+Reg_Capacity_Price		(ISO NE CA tab only) is the Regulation Market Capacity clearing price in $/MWh
+Min_5min_RSP		The lowest pool level five-minute Regulation Service Price in $/MWh within the hour
+Max_5min_RSP		The highest pool level five-minute Regulation Service Price in $/MWh within the hour
+Min_5min_RCP		The lowest pool level five-minute Regulation Capacity Price in $/MWh within the hour
+Max_5min_RCP		The highest pool level five-minute Regulation Capacity Price in $/MWh within the hour
+
+To keep it simple:
+-Ignored Graph Level Features
+-Ignored Prices
+-Grouping weather data in one toggle
+-Toggling if use RT, day ahead, or both
+-Obviously we keep data and hour, but we might want to consider aggregating them (to form one dimension)
+
+-For time, we add the option of using cos and sin functions consider the cyclicality of time in our features.
+This is done at the hour of day, day of week, and day of year level.
+
+What still needs to be implemented is:
+-train/val/test splits (waiting on more info on the models)
+-Fixing root (small detail)
+-Window and horizon (again want more info from the models)
+-Getting the actual tensors (quick once we have done the above and considering we already have our dataframe)
+=>This is approximately a half day to one day of work.
