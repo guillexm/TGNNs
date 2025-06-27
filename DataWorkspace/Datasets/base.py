@@ -14,9 +14,9 @@ from typing import Any, Dict
 # It will be overridden by the dataset config files for each dataset.
 @dataclass
 class DataConfig:
-    root: str # path to the dataset
     window: int # past steps given to the model
     horizon: int # forecast length
+    root: str = "" # path to the dataset
     split: str = "train" # "train" / "val" / "test"
     #download: bool = True  # auto-download if missing, !!! So far we are not implementing this feature to save time.
     

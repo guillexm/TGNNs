@@ -1,0 +1,2 @@
+This dataset is very big and will need quite a lot of work to prepare for use. 
+As such I will only prepare if it is guaranteed that we use it.

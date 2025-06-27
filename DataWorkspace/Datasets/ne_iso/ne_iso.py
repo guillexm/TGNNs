@@ -28,7 +28,7 @@ ZONES = [
 
 class NEISOHourlyZonal(GraphDataset):
     """Hourly demand & weather for the eight ISO-NE zones (SMD Hourly files).
-    Selecting the whole 5 years of data gives us 52607 data points"""
+    Selecting the whole 5 years of data gives us 43824 data points."""
     def __init__(self, cfg: NEISOConfig):
         #Start year and end year check:
         if not (2018 < cfg.start_year <= cfg.end_year < 2024):
@@ -105,7 +105,7 @@ class NEISOHourlyZonal(GraphDataset):
         Called only when self.time_encoding == "cyclic".
         """
         # Make Hr_End numeric: 
-        df["Hr_End"] = pd.to_numeric(df["Hr_End"], errors="raise").astype(int)
+        pd.to_numeric(df["Hr_End"], errors="raise")
         # Build timestamps from our date and hours
         ts: pd.Series = (
             pd.to_datetime(df["Date"], format="%Y-%m-%d")

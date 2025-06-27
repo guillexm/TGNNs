@@ -1,7 +1,3 @@
-TODO:
--Summarize variables
--Decide on relevant variables
--Write code for (Download) and extraction
 
 Variables:
 One file for each year from 2019 to 2023 (5 years)

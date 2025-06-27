@@ -1,0 +1,4 @@
+This folder will contain the code for all the traffic datasets that are provided by Torch Spatiotemporal, because they function similarly and are all sourced from the same place.
+These are PeMS, METR-LA, PeMS Bay, LargeST
+
+I'm holding off on writing code for now since all the functionalities are already provided, and the only thing that needs to be written is a wrapper around the TorchST code to adapt it to our GraphDataset class.

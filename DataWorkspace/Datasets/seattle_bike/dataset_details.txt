@@ -1,0 +1,10 @@
+There is disparate data at the sensors that start in 2013-2014. Some of that data however is quite messy (lots of missing values with big gaps).
+Furthermore, data is a bit complicated, and there are many ways to potentially build the graph: Nodes have counts for different directions, 
+and we can either build the graph manually with the road network manually or through learning methods.
+
+Some more technical details:
+-There is a file for each of the 12 bike counters.
+-Each file has data starting in the 2010s (various starting dates) until today.
+-We have four dimensions: date and time (hourly), bike direction 1 (e.g North), bike direction 2 (e.g south), total bike traffic
+-There are pretty big blocks of missing data.
+

@@ -1,0 +1,23 @@
+Similarly to ne_iso, there is a lot of pre-provided data and we will only use some of it.
+This specific dataset has both raw data (here:https://mis.nyiso.com/public/), 
+and a python package with functions to make data access easier. (here:https://github.com/m4rz910/NYISOToolkit)
+
+To get install the package, the command is: pip install git+https://github.com/m4rz910/NYISOToolkit#egg=nyisotoolkit
+However, it is important to note the package is old and has many old dependencies. As such I used to download the CSVs but once they are downloaded it is no longer necessary.
+
+Now, for the actual datasets available (I am only focusing on the data available through the github, there is more data available on the nyiso website).
+
+load_h (hourly load by NYISO region)
+load_5m (5-min load by NYISO region)
+load_forecast_h (hourly load forecast by NYISO region)
+fuel_mix_5m (5-min frequency)
+interface_flows_5m (5-min internal and external flows between regions)
+lbmp_dam_h (hourly day-ahead zonal location based marginal price)
+lbmp_rt_5m (5-min reak time zonal location based marginal price)
+
+Out of these datasets, the most useful to us are the first three (load_h, load_5m, load_forecast_h). 
+We have load_h and load_forecast_h exactly like in ne_iso, we lose weather data but gain a 5min load dataset.
+
+This is the dataset that I will prepare, but it should not be too much work to also prepare the load_h and load_forecast_h datasets if needed.
+I'm only preparing up to one year of data (already massive at 5 min intervals), but more could be added if need be.
+Because downloading the files was a bit of a hassle, I've pre-emptively downloaded the years 2018 and 2019 for load_h, load_5m, and load_forecast_h
