@@ -1,0 +1,5 @@
+pyproject.toml
+dataworkspace.egg-info/PKG-INFO
+dataworkspace.egg-info/SOURCES.txt
+dataworkspace.egg-info/dependency_links.txt
+dataworkspace.egg-info/top_level.txt
