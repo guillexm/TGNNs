@@ -8,6 +8,7 @@ from dataclasses import dataclass
 import torch
 from torch.utils.data import Dataset
 from typing import Any, Dict
+import pandas as pd
 
 # DataConfig contains the configuration for the dataset.
 # The code below is a template for the dataset config.
@@ -32,6 +33,7 @@ class GraphDataset(Dataset, ABC):
         self.A: torch.Tensor | None = None     # adjacency matrix
         self.X: torch.Tensor | None = None     # (T, N, F) features of nodes; T: time steps, N: number of nodes, F: number of features per nodes.
         self.y: torch.Tensor | None = None     # (T, N, horizon) target values; T: time steps, N: number of nodes, horizon: forecast length.
+        self.df: pd.DataFrame | None = None
         self._prepare()                        # Forces full loading of the dataset in the subclass' constructor.
 
     # ----- Dataset interface -----
@@ -61,6 +63,21 @@ class GraphDataset(Dataset, ABC):
         return 0
 
     """TODO: Add other properties such as time_steps, num_samples, etc."""
+
+    def dataframe(self) -> pd.DataFrame:
+        """
+        Return the raw data as a pandas DataFrame.
+
+        The subclass must set `self._df` in `_prepare`.  A guard is in place so
+        that the caller gets a clear error instead of `None` if the DataFrame
+        wasn’t initialised.
+        """
+        if self.df is None:
+            raise RuntimeError(
+                "No DataFrame found – make sure your subclass sets "
+                "`self._df` inside _prepare() before calling `dataframe()`."
+            )
+        return self.df
 
     # ----- factory method to create a GraphDataset instance from a given dataset config file ---
     @classmethod
