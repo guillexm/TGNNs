@@ -1,5 +1,5 @@
-from DataWorkspace.Datasets.base import GraphDataset, DataConfig
-import paths
+from dataworkspace.datasets.base import GraphDataset, DataConfig
+import dataworkspace.paths as paths
 from dataclasses import dataclass
 import torch
 import tsl
