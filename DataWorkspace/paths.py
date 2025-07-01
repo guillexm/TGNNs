@@ -5,8 +5,8 @@ from pathlib import Path
 
 # ─── Project root = folder that contains this file ··· TGNNs/ ───
 PROJECT_ROOT = Path(__file__).resolve().parents[2]        # TGNNs/
-DATASETS_DIR = PROJECT_ROOT / "DataWorkspace" / "Datasets"
-MODELS_DIR   = PROJECT_ROOT / "Models"                    # etc.
+DATASETS_DIR = PROJECT_ROOT / "dataworkspace" / "datasets"
+MODELS_DIR   = PROJECT_ROOT / "models"                    # etc.
 
 def dataset_root(name: str) -> Path:
     """

@@ -8,9 +8,9 @@ from pathlib import Path
 
 
 
-
+ROOT=paths.dataset_root("elergone")
 class ElergoneConfig(DataConfig):
-    root : str = str(paths.dataset_root("elergone"))
+    root : str = str(ROOT)
 
 class ElergoneDataset(GraphDataset):
     """Wrapper arround the tsl.Elergone dataset to make it inherit from our GraphDataset base class"""
@@ -22,7 +22,7 @@ class ElergoneDataset(GraphDataset):
     def _prepare(self) -> None:
         #Call the constructor from Elergone
         eler=tsl.datasets.Elergone(root=self.cfg.root)
-        self.df=eler.load()
+        self.df=eler.load()[0]
 
     #BOILERPLATE:
     def __len__(self) -> int:

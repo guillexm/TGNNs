@@ -1,0 +1,12 @@
+This is a dataset provided by torch spatiotemporal. As such I am mostly building wrapper functions around that library.
+The raw data can be found here: https://archive.ics.uci.edu/ml/datasets/ElectricityLoadDiagrams20112014
+The code can be found here: https://torch-spatiotemporal.readthedocs.io/en/latest/_modules/tsl/datasets/elergone.html#Elergone
+And the docs can be found here: https://torch-spatiotemporal.readthedocs.io/en/latest/modules/datasets_in_tsl.html#tsl.datasets.Elergone
+
+About the data:
+It represents the load of different clients of an electric utility in Portugal from 2011 to 2014 (in kWh).
+The timestep is every 15 minutes and there are 140256 datapoints in total.
+There is 20.15% percent missing values. I believe that includes datapoints that were added later and whose value is 
+zero add date.
+There is no adjacency matrix provided, but torch spatiotemporal has one implemented by default (correntropy)
+
