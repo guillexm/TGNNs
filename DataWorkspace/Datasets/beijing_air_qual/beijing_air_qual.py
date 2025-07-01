@@ -1,3 +1,4 @@
+from dataclasses import dataclass
 from dataworkspace.datasets.base import GraphDataset, DataConfig
 import dataworkspace.paths as paths
 from typing import Literal
@@ -5,6 +6,7 @@ import tsl
 
 ROOT=paths.dataset_root("beijing_air_qual")
 
+@dataclass
 class BAQConfig(DataConfig):
     root : str = str(ROOT)
     option : Literal["big", "small"] = "small" # Decide if we use the small dataset (only Beijing) or the full dataset (43 chinese cities)
@@ -18,7 +20,6 @@ class BAQDataset(GraphDataset):
         super().__init__(cfg)
     
     def _prepare(self) -> None:
-        #Call the constructor from Elergone
         if(self.option=="big"):
             air_qual=tsl.datasets.AirQuality(root=self.cfg.root)
         else:

@@ -9,6 +9,7 @@ from pathlib import Path
 
 ROOT=paths.dataset_root("elergone")
 
+@dataclass
 class ElergoneConfig(DataConfig):
     root : str = str(ROOT)
 

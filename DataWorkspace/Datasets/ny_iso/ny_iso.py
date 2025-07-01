@@ -1,6 +1,6 @@
 
 #This is the file that deals with the NY-ISO dataset. We inherit from the GraphDataset base class.
-from DataWorkspace.Datasets.base import GraphDataset, DataConfig
+from dataworkspace.datasets.base import GraphDataset, DataConfig
 import pandas as pd
 from typing import Dict, TypedDict
 from dataclasses import dataclass

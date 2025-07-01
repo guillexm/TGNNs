@@ -1,4 +1,63 @@
 This folder will contain the code for all the traffic datasets that are provided by Torch Spatiotemporal, because they function similarly and are all sourced from the same place.
 These are PeMS, METR-LA, PeMS Bay, LargeST
 
-I'm holding off on writing code for now since all the functionalities are already provided, and the only thing that needs to be written is a wrapper around the TorchST code to adapt it to our GraphDataset class.
+Since LargeST functions somewhat differently I'm putting it in its own class.
+PeMS (03, 04, 07, 08), METR-LA, and PeMS Bay function the same so they are in one torch_traffic_dataset class
+Note that all the datasets have a pairwise distance adjacency matrix between their nodes.
+
+Info for each dataset:
+METR-LA:
+    -Sampling Rate: 5 minutes
+    -Data collection period: 4 months, 34272 data points
+    -Missing values: 8.11%
+    -207 Sensors
+
+PeMS Bay:
+    -Sampling Rate: 5 minutes
+    -Data collection period: 6 months, 52128 data points
+    -Missing values: 0.02%
+    -325 Sensors
+
+PeMS03:
+    -Sampling Rate: 5 minutes
+    -Data collection period: 3 months, 26208 data points
+    -Missing values: 0% (already imputed in dataset)
+    -358 Sensors
+
+ALL THE BELOW HAVE COVARIATES, NEED TO CHECK IF IT IS THE CASE FOR OTHERS OR IF IT LOOKS DIFFERENT
+
+PeMS04:
+    -Sampling Rate: 5 minutes
+    -Data collection period: 2 months, 16992 data points
+    -Missing values: 0% (already imputed in dataset)
+    -307 Sensors
+
+PeMS07:
+    -Sampling Rate: 5 minutes
+    -Data collection period: 4 months, 28224 data points
+    -Missing values: 0%(already imputed in dataset)
+    -883 Sensors
+
+PeMS08:
+    -Sampling Rate: 5 minutes
+    -Data collection period: 2 months, 17856 data points
+    -Missing values: 0%(already imputed in dataset)
+    -170 Sensors
+
+LargeST Info:  
+LEFT UNDOWNLOADED FOR NOW
+Will hold off on doing so until/if we need it to the size of the data
+    -Sampling Rate: 5 minutes
+    -Data collection period: 5 years, 525888 data points
+    -Missing values: 1.51%
+    -8600 nodes
+This dataset can then be subdivided with tsl functions:
+    Greater LA: 3834 nodes
+    Greater Bay area: 2352 nodes
+    San Diego: 716
+
+
+
+
+
+
