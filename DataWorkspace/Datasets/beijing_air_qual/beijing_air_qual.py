@@ -1,28 +1,30 @@
 from dataworkspace.datasets.base import GraphDataset, DataConfig
 import dataworkspace.paths as paths
-from dataclasses import dataclass
+from typing import Literal
 import tsl
-import pandas as pd
-from pathlib import Path
-
-
 
 ROOT=paths.dataset_root("elergone")
 
-class ElergoneConfig(DataConfig):
+class BAQConfig(DataConfig):
     root : str = str(ROOT)
+    option : Literal["big", "small"] = "small" # Decide if we use the small dataset (only Beijing) or the full dataset (43 chinese cities)
 
-class ElergoneDataset(GraphDataset):
+class BAQDataset(GraphDataset):
     """Wrapper arround the tsl.Elergone dataset to make it inherit from our GraphDataset base class"""
-    def __init__(self, cfg: ElergoneConfig):
-        self.root=ElergoneConfig.root
+    def __init__(self, cfg: BAQConfig):
+        self.root=BAQConfig.root
+        self.option=BAQConfig.option
         # the base class calls _prepare()
         super().__init__(cfg)
     
     def _prepare(self) -> None:
         #Call the constructor from Elergone
-        eler=tsl.datasets.Elergone(root=self.cfg.root)
-        self.df=eler.load()[0]
+        if(self.option=="big"):
+            air_qual=tsl.datasets.AirQuality(root=self.cfg.root)
+        else:
+            air_qual=tsl.datasets.AirQuality(root=self.cfg.root, small=True)
+
+        self.df=air_qual.load()[0]
 
     #BOILERPLATE:
     def __len__(self) -> int:
@@ -34,10 +36,10 @@ class ElergoneDataset(GraphDataset):
         assert self.y is not None
         return self.X[0], self.A, self.y[0]
 
-    
+
 if __name__ == "__main__":
     
     # basic boilerplate config
-    cfg_dict= ElergoneConfig()
-    df = ElergoneDataset(cfg_dict).dataframe()
-    df.to_csv("elergone.csv")
+    cfg_dict= BAQConfig()
+    df = BAQDataset(cfg_dict).dataframe()
+    df.to_csv("beijing_air_quality.csv")

@@ -1,0 +1,2 @@
+This dataset is a two-in-one. There is data containing airquality info for every Chinese city, and data just for Beijing.
+For now we focus only on the Beijing data, which we describe below.

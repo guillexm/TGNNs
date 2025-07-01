@@ -1,6 +1,6 @@
 #This is the file that deals with the NE-ISO dataset. We inherit from the GraphDataset base class.
 import os
-from DataWorkspace.Datasets.base import GraphDataset, DataConfig
+from dataworkspace.datasets.base import GraphDataset, DataConfig
 from dataclasses import dataclass
 from typing import Dict, List, Literal, TypedDict
 import torch
