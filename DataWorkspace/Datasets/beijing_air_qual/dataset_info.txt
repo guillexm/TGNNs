@@ -1,2 +1,9 @@
 This dataset is a two-in-one. There is data containing airquality info for every Chinese city, and data just for Beijing.
 For now we focus only on the Beijing data, which we describe below.
+
+-36 sensors that measure PM2.5 levels
+-hourly timestep
+-One year of measurements (May 2014-April 2025)
+=>This gives us 8760 data points, across 36 stations.
+-There appears to be no missing values for Beijing.
+-There is an adjacency matrix provided of the distance between each sensor station.

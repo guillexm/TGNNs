@@ -3,7 +3,7 @@ import dataworkspace.paths as paths
 from typing import Literal
 import tsl
 
-ROOT=paths.dataset_root("elergone")
+ROOT=paths.dataset_root("beijing_air_qual")
 
 class BAQConfig(DataConfig):
     root : str = str(ROOT)
@@ -43,3 +43,5 @@ if __name__ == "__main__":
     cfg_dict= BAQConfig()
     df = BAQDataset(cfg_dict).dataframe()
     df.to_csv("beijing_air_quality.csv")
+
+
