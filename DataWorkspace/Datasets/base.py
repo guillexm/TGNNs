@@ -8,6 +8,7 @@ from dataclasses import dataclass
 import torch
 from torch.utils.data import Dataset
 from typing import Any, Dict
+from pathlib import Path
 import pandas as pd
 
 # DataConfig contains the configuration for the dataset.
@@ -15,9 +16,9 @@ import pandas as pd
 # It will be overridden by the dataset config files for each dataset.
 @dataclass
 class DataConfig:
+    root: str  # path to the dataset
     window: int = 12 # past steps given to the model
     horizon: int =12 # forecast length
-    root: str = "" # path to the dataset
     split: str = "train" # "train" / "val" / "test"
     #download: bool = True  # auto-download if missing, !!! So far we are not implementing this feature to save time.
     
@@ -29,6 +30,8 @@ class GraphDataset(Dataset, ABC):
     def __init__(self, cfg: DataConfig):
         self.cfg = cfg
         self.root = cfg.root
+        # Make directory if it doesn't exist
+        Path(self.root).mkdir(parents=True, exist_ok=True)
         self.split = cfg.split
         self.A: torch.Tensor | None = None     # adjacency matrix
         self.X: torch.Tensor | None = None     # (T, N, F) features of nodes; T: time steps, N: number of nodes, F: number of features per nodes.

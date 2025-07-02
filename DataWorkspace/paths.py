@@ -4,7 +4,7 @@ from pathlib import Path
 
 
 # ─── Project root = folder that contains this file ··· TGNNs/ ───
-PROJECT_ROOT = Path(__file__).resolve().parents[2]        # TGNNs/
+PROJECT_ROOT = Path(__file__).resolve().parents[1]        # TGNNs/
 DATASETS_DIR = PROJECT_ROOT / "dataworkspace" / "datasets"
 MODELS_DIR   = PROJECT_ROOT / "models"                    # etc.
 

@@ -1,8 +1,10 @@
 from dataworkspace.datasets.base import GraphDataset, DataConfig
 import dataworkspace.paths as paths
 from typing import Literal, Dict, Type
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from tsl.datasets import PeMS03, PeMS04, PeMS07, PeMS08, MetrLA, PemsBay
+from pathlib import Path
+
 
 # Dataset name-class mapping:
 
@@ -19,19 +21,21 @@ ROOT=paths.dataset_root("torch_traffic")
 
 @dataclass
 class TorchTrafficConfig(DataConfig):
-    set : Literal["pems03", "pems04", "pems07", "pems08", "metrla", "pemsbay"] = "pems03" # Decide which dataset to use
-    root : str = str(ROOT)
+    set : Literal["pems03", "pems04", "pems07", "pems08", "metrla", "pemsbay"] = "metrla" # Decide which dataset to use
     
 class TorchTrafficDataset(GraphDataset):
     """Wrapper arround the tsl.Elergone dataset to make it inherit from our GraphDataset base class"""
     def __init__(self, cfg: TorchTrafficConfig):
-        self.root=TorchTrafficConfig.root
-        self.set=TorchTrafficConfig.set
+        self.set=cfg.set
+        cfg.root=str(Path(ROOT) / self.set)
+        
         # the base class calls _prepare()
         super().__init__(cfg)
     
     def _prepare(self) -> None:
-        ds_cls = _DATASET_REGISTRY[self.set]
+        if self.set not in ("metrla", "pemsbay"):
+            raise NotImplementedError("Only 'metrla' and 'pemsbay' are implemented so far.")
+        ds_cls = _DATASET_REGISTRY[self.set](root=self.root)
         self.df=ds_cls.load()[0]
 
     #BOILERPLATE:
@@ -45,6 +49,6 @@ class TorchTrafficDataset(GraphDataset):
         return self.X[0], self.A, self.y[0]
 
 if __name__ == "__main__":
-    cfg_dict= TorchTrafficConfig(set="metrla")
+    cfg_dict= TorchTrafficConfig(set="pemsbay", root=str(ROOT))
     df = TorchTrafficDataset(cfg_dict).dataframe()
-    df.to_csv("torch_traffic_metrla.csv")
+    df.to_csv("pemsbay.csv")

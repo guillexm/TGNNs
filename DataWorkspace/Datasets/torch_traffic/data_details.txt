@@ -10,13 +10,20 @@ METR-LA:
     -Sampling Rate: 5 minutes
     -Data collection period: 4 months, 34272 data points
     -Missing values: 8.11%
-    -207 Sensors
+    -207 Sensors, that give us the car speeds at that sensor.
+    -We are given the sensor's geographical coordinates
 
 PeMS Bay:
     -Sampling Rate: 5 minutes
     -Data collection period: 6 months, 52128 data points
     -Missing values: 0.02%
-    -325 Sensors
+    -325 Sensors, that give us the car speeds at that sensor.
+    -We are given the sensor's geographical coordinates
+
+-----------------------------------------------------------------------------
+THE DATASETS BELOW CANNOT CURRENTLY BE DOWNLOADED WITH TSL.
+There are alternative download methods if we decide to really focus on traffic datasets.
+Otherwise PeMS Bay and MetrLA should be enough for our purpose.
 
 PeMS03:
     -Sampling Rate: 5 minutes
