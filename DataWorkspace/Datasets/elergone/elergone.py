@@ -27,7 +27,6 @@ class ElergoneDataset(GraphDataset):
 
     #BOILERPLATE:
     def __len__(self) -> int:
-        # 1 sample (until sliding-window logic is added)
         return 1
 
     def __getitem__(self, idx: int):

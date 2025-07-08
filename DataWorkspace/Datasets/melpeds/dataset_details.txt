@@ -1,0 +1,14 @@
+This dataset contains data from sensors counting pedestrians in Melbourne.
+The original data can be downloaded from here: https://data.melbourne.vic.gov.au/explore/dataset/pedestrian-counting-system-monthly-counts-per-hour/table/?sort=sensing_date
+In the final CSV, I've built we get the following data:
+
+A melpeds csv:
+Approximately two year's worth of hourly sensor data: from July 2023 to June 2025. ~17000 data sensor_positions
+I have not computed the percentage of missing values but it appears to be quite high.
+For each sensor, we have the count of pedestrians going in two directions. 
+(Note: That the names of the directions are provided in the raw data, ie North/South, East/West
+I chose to omit this but we could readd it later on.)
+
+A sensor_positions csv:
+-It associates each sensor's name with it's lagitude and longitude position.
+We can use this file to build a distance-based adjacency matrix.

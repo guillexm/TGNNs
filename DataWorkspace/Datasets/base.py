@@ -82,7 +82,3 @@ class GraphDataset(Dataset, ABC):
             )
         return self.df
 
-    # ----- factory method to create a GraphDataset instance from a given dataset config file ---
-    @classmethod
-    def from_config(cls, cfg_dict: Dict[str, Any]) -> "GraphDataset":
-        return cls(DataConfig(**cfg_dict))

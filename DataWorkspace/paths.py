@@ -3,7 +3,6 @@ from pathlib import Path
 #I've made this file to ensure code compatibility across machines when dealing with paths.
 
 
-# ─── Project root = folder that contains this file ··· TGNNs/ ───
 PROJECT_ROOT = Path(__file__).resolve().parents[1]        # TGNNs/
 DATASETS_DIR = PROJECT_ROOT / "dataworkspace" / "datasets"
 MODELS_DIR   = PROJECT_ROOT / "models"                    # etc.
