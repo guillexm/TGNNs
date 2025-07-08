@@ -1,3 +1,5 @@
+Important note: Working with repo correctly might need some lfs (large file) commands. email me at johan.boscher@mail.mcgill.ca if needed.
+
 I'v added my dataset work to the github under the folder dataworkspace. There are also two extra files/folders ("dataworkspace.egg-info" and pyproject.toml), these are to make dataworkspace into a python package, making import statements simpler inside the code.
 
 The dataworkspace folder structure was build with the idea of having a generic model and dataset class (model.base.py and dataset.base.py) to allow for a lot of code reuse in case we want to run many models on many datasets. For now most of it is boilerplate code, what I've done so far is:
